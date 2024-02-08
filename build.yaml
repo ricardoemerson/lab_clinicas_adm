@@ -1,0 +1,6 @@
+targets:
+  $default:
+    builders:
+      json_annotation:
+        generate_for:
+          - "lib/src/data/model/**.g.dart"
