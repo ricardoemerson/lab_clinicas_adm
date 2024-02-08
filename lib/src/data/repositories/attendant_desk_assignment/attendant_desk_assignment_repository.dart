@@ -66,4 +66,22 @@ class AttendantDeskAssignmentRepository implements IAttendantDeskAssignmentRepos
       return Left(RepositoryException('Erro ao remover número de guichê.'));
     }
   }
+
+  @override
+  Future<Either<RepositoryException, int>> getDeskAssignment() async {
+    try {
+      final Response(data: List(first: data)) = await _restClient.auth.get(
+        '/attendantDeskAssignment',
+        queryParameters: {
+          'user_id': '#userAuthRef',
+        },
+      );
+
+      return Right(data['desk_number']);
+    } on DioException catch (e, s) {
+      log('Erro ao buscar número do guichê.', error: e, stackTrace: s);
+
+      return Left(RepositoryException('Erro ao buscar número do guichê.'));
+    }
+  }
 }
