@@ -3,7 +3,6 @@ import 'package:flutter_getit/flutter_getit.dart';
 
 import '../../data/repositories/user/i_user_repository.dart';
 import '../../data/repositories/user/user_repository.dart';
-import '../../data/services/user/i_user_login_service.dart';
 import '../../data/services/user/user_login_service.dart';
 import 'login_controller.dart';
 import 'login_page.dart';
@@ -14,7 +13,7 @@ class LoginRouter extends FlutterGetItPageRouter {
   @override
   List<Bind<Object>> get bindings => [
         Bind.lazySingleton<IUserRepository>((i) => UserRepository(restClient: i())),
-        Bind.lazySingleton<IUserLoginService>((i) => UserLoginService(userRepository: i())),
+        Bind.lazySingleton((i) => UserLoginService(userRepository: i())),
         Bind.lazySingleton((i) => LoginController(userLoginService: i())),
       ];
 
