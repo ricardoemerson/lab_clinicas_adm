@@ -35,7 +35,8 @@ class CallNextPatientService {
   }
 
   Future<Either<RepositoryException, PatientInformationFormModel?>> updatePanel(
-      PatientInformationFormModel form) async {
+    PatientInformationFormModel form,
+  ) async {
     final response = await _attendantDeskAssignmentRepository.getDeskAssignment();
 
     switch (response) {

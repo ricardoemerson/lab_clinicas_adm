@@ -30,13 +30,13 @@ class PatientInformationFormRepository implements IPatientInformationFormReposit
       }
 
       final formData = data.first;
-      final updateStatusResponse = await updateStatus(formData['id'], PatientInformationFormStatus.checkIn);
+      final updateStatusResponse = await updateStatus(formData['id'], PatientInformationFormStatus.checkedIn);
 
       switch (updateStatusResponse) {
         case Left(value: final exception):
           return Left(exception);
         case Right():
-          formData['status'] = PatientInformationFormStatus.checkIn;
+          formData['status'] = PatientInformationFormStatus.checkedIn.id;
           formData['patient'] = await _getPatient(formData['patient_id']);
 
           return Right(PatientInformationFormModel.fromJson(formData));
@@ -52,7 +52,7 @@ class PatientInformationFormRepository implements IPatientInformationFormReposit
   Future<Either<RepositoryException, Unit>> updateStatus(String id, PatientInformationFormStatus status) async {
     try {
       await _restClient.auth.put(
-        'patientInformationForm/$id',
+        '/patientInformationForm/$id',
         data: {'status': status.id},
       );
 
@@ -65,7 +65,7 @@ class PatientInformationFormRepository implements IPatientInformationFormReposit
   }
 
   Future<Map<String, dynamic>> _getPatient(String id) async {
-    final Response(:data) = await _restClient.auth.get('/patient/$id');
+    final Response(:data) = await _restClient.auth.get('/patients/$id');
 
     return data;
   }
