@@ -5,17 +5,19 @@ import 'package:signals_flutter/signals_flutter.dart';
 
 import '../../core/widgets/item_data.dart';
 import '../../data/models/patient_information_form_model.dart';
-import 'pre_checkin_controller.dart';
+import 'checkin_controller.dart';
+import 'widgets/checkin_image_link.dart';
+import 'widgets/section_title.dart';
 
-class PreCheckinPage extends StatefulWidget {
-  const PreCheckinPage({super.key});
+class CheckinPage extends StatefulWidget {
+  const CheckinPage({super.key});
 
   @override
-  State<PreCheckinPage> createState() => _PreCheckinPageState();
+  State<CheckinPage> createState() => _CheckinPageState();
 }
 
-class _PreCheckinPageState extends State<PreCheckinPage> with MessageViewMixin {
-  final controller = Injector.get<PreCheckinController>();
+class _CheckinPageState extends State<CheckinPage> with MessageViewMixin {
+  final controller = Injector.get<CheckinController>();
 
   @override
   void initState() {
@@ -71,6 +73,8 @@ class _PreCheckinPageState extends State<PreCheckinPage> with MessageViewMixin {
                   ),
                 ),
                 const SizedBox(height: 48),
+                const SectionTitle(title: 'Cadastro'),
+                const SizedBox(height: 24),
                 ItemData(
                   label: 'Nome Paciente',
                   value: patient.name,
@@ -113,28 +117,34 @@ class _PreCheckinPageState extends State<PreCheckinPage> with MessageViewMixin {
                   value: patient.guardianIdentificationNumber,
                   padding: const EdgeInsets.only(bottom: 14),
                 ),
-                const SizedBox(height: 48),
-                Row(
+                const SizedBox(height: 24),
+                const SectionTitle(title: 'Validar Imagens Exames'),
+                const SizedBox(height: 24),
+                const Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    Expanded(
-                      child: OutlinedButton(
-                        onPressed: controller.next,
-                        child: const Text('CHAMAR OUTRA SENHA'),
-                      ),
-                    ),
-                    const SizedBox(width: 16),
-                    Expanded(
-                      child: ElevatedButton(
-                        onPressed: () {
-                          Navigator.of(context).pushReplacementNamed(
-                            '/checkin',
-                            arguments: controller.patientInformationForm.value,
-                          );
-                        },
-                        child: const Text('ATENDER'),
-                      ),
+                    CheckinImageLink(label: 'Carteirinha'),
+                    Column(
+                      children: [
+                        CheckinImageLink(label: 'Pedido médico 1'),
+                        CheckinImageLink(label: 'Pedido médico 2'),
+                        CheckinImageLink(label: 'Pedido médico 3'),
+                      ],
                     ),
                   ],
+                ),
+                const SizedBox(height: 24),
+                SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.of(context).pushReplacementNamed(
+                        '/checkin',
+                        arguments: controller.patientInformationForm,
+                      );
+                    },
+                    child: const Text('FINALIZAR ATENDIMENTO'),
+                  ),
                 ),
               ],
             ),
