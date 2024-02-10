@@ -7,6 +7,7 @@ import 'package:lab_clinicas_adm/src/pages/checkin/checkin_router.dart';
 import 'package:lab_clinicas_core/lab_clinicas_core.dart';
 
 import 'src/core/bindings/lab_clinica_application_bindings.dart';
+import 'src/pages/end_checkin/end_checkin_router.dart';
 import 'src/pages/home/home_router.dart';
 import 'src/pages/login/login_router.dart';
 import 'src/pages/pre_checkin/pre_checkin_router.dart';
@@ -44,6 +45,7 @@ class LabClinicasAdmApp extends StatelessWidget {
         HomeRouter(),
         PreCheckinRouter(),
         CheckinRouter(),
+        EndCheckinRouter(),
       ],
     );
   }
