@@ -36,8 +36,8 @@ class LabClinicasAdmApp extends StatelessWidget {
       bindings: LabClinicaApplicationBindings(),
       pagesBuilders: [
         FlutterGetItPageBuilder(
-          page: (context) => const SplashPage(),
           path: '/',
+          page: (context) => const SplashPage(),
         ),
       ],
       pages: const [
