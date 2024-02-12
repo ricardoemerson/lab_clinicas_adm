@@ -3,10 +3,10 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_getit/flutter_getit.dart';
-import 'package:lab_clinicas_adm/src/pages/checkin/checkin_router.dart';
 import 'package:lab_clinicas_core/lab_clinicas_core.dart';
 
 import 'src/core/bindings/lab_clinica_application_bindings.dart';
+import 'src/pages/checkin/checkin_router.dart';
 import 'src/pages/end_checkin/end_checkin_router.dart';
 import 'src/pages/home/home_router.dart';
 import 'src/pages/login/login_router.dart';

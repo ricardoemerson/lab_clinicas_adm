@@ -64,7 +64,7 @@ class _EndCheckinPageState extends State<EndCheckinPage> with MessageViewMixin {
                   onPressed: controller.callNextPatient,
                   child: const Text('CHAMAR OUTRA SENHA'),
                 ),
-              )
+              ),
             ],
           ),
         ),
